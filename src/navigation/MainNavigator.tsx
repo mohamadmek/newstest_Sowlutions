@@ -7,12 +7,20 @@ import {Main, Search} from '../features/news/views';
 
 const Stack = createNativeStackNavigator<TMainStackParamList>();
 
+const SearchIcon = (navigation: any) => (
+  <Icon
+    onPress={() => navigation.navigate('SearchNews')}
+    name="magnify"
+    size="xLarge"
+  />
+);
+
 export const MainNavigator = () => {
   const navigation = useNavigation();
 
   return (
     <Stack.Navigator
-      screenOptions={({navigation}) => ({
+      screenOptions={() => ({
         headerTintColor: '#000',
         headerTitleAlign: 'center',
         headerBackTitleVisible: false,
@@ -30,13 +38,7 @@ export const MainNavigator = () => {
           component={Main}
           options={() => ({
             headerTitle: 'News',
-            headerRight: () => (
-              <Icon
-                onPress={() => navigation.navigate('SearchNews')}
-                name="magnify"
-                size="xLarge"
-              />
-            ),
+            headerRight: () => SearchIcon(navigation),
           })}
         />
         <Stack.Screen

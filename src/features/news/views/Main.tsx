@@ -16,9 +16,8 @@ export const Main = () => {
   const {data, error, isLoading} = useGetNewsQuery({});
 
   const onRefresh = React.useCallback(() => {
-    // invalidate the cache of useGetNewsQuery
     dispatch(newsApi.util.invalidateTags(['News']));
-  }, []);
+  }, [dispatch]);
 
   if (isLoading) {
     return <Loading fullScreen />;

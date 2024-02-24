@@ -9,7 +9,7 @@ type IconSizeProps = {
 export interface IIconProps extends Omit<IconProps, 'size'> {
   size?: IconSizeProps['iconSizes'];
   name: string;
-  type?: 'primary' | 'secondary' | 'error';
+  // type?: 'primary' | 'secondary' | 'error';
 }
 
 export const IconSizes = {
@@ -25,7 +25,7 @@ export const IconSizes = {
 export const Icon = ({
   size = 'medium',
   name,
-  type = 'primary',
+  // type = 'primary',
   disabled,
   style,
   testID = 'icon',

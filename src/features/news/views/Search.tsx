@@ -4,13 +4,14 @@ import {
   TextInput,
   FlatList,
   Platform,
-  KeyboardAvoidingView,
   Keyboard,
+  ViewStyle,
 } from 'react-native';
 import React from 'react';
 import {Pressable} from 'react-native';
 import {Card} from '../components/Card';
 import {
+  DismissKeyboardView,
   Divider,
   Loading,
   NoData,
@@ -31,22 +32,21 @@ export const Search = () => {
     useLazySearchNewsQuery();
   const [search, onChangeSearch] = React.useState('');
 
+  const inputStyles: ViewStyle = {
+    borderColor: search !== '' ? '#079E01' : 'gray',
+    borderWidth: search !== '' ? 2 : 1,
+  };
+
+  const buttonStyles: ViewStyle = {opacity: search === '' ? 0.5 : 1};
+
   return (
-    <KeyboardAvoidingView
-      keyboardVerticalOffset={Platform.OS === 'ios' ? 60 : 0}
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      style={{flex: 1}}>
+    <DismissKeyboardView
+      keyboardVerticalOffset={Platform.OS === 'ios' ? 60 : 80}>
       <View style={styles.container}>
         <View style={styles.screenContainer}>
           {/* Normally I would use React-Hook-Form and Yup or zod for validations */}
           <TextInput
-            style={[
-              styles.input,
-              {
-                borderColor: search !== '' ? '#079E01' : 'gray',
-                borderWidth: search !== '' ? 2 : 1,
-              },
-            ]}
+            style={[styles.input, inputStyles]}
             value={search}
             onChangeText={onChangeSearch}
             placeholder="Search"
@@ -57,7 +57,7 @@ export const Search = () => {
           <Loading fullScreen />
         ) : (
           <FlatList
-            contentContainerStyle={{marginTop: 10}}
+            contentContainerStyle={styles.list}
             ListEmptyComponent={
               <NoData
                 text={
@@ -84,7 +84,7 @@ export const Search = () => {
         <View style={styles.screenContainer}>
           <Pressable
             disabled={search === '' || isLoading || isFetching}
-            style={[styles.searchButton, {opacity: search === '' ? 0.5 : 1}]}
+            style={[styles.searchButton, buttonStyles]}
             onPress={() => {
               searchNews(search);
               Keyboard.dismiss();
@@ -99,7 +99,7 @@ export const Search = () => {
           </Pressable>
         </View>
       </View>
-    </KeyboardAvoidingView>
+    </DismissKeyboardView>
   );
 };
 
@@ -125,4 +125,5 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     borderRadius: 8,
   },
+  list: {marginTop: 10},
 });
