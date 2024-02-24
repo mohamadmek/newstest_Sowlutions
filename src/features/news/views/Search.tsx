@@ -13,6 +13,7 @@ import {Card} from '../components/Card';
 import {
   DismissKeyboardView,
   Divider,
+  Icon,
   Loading,
   NoData,
   ShowError,
@@ -21,10 +22,8 @@ import {
 import {useLazySearchNewsQuery} from '../store/dashboard.api';
 import {IArticle} from '../types';
 
-// Add clear input
 // Add Categories filtration
 // Maybe Carousel
-// Add some tests
 
 export const Search = () => {
   const [searchNews, {data, isLoading, error, isUninitialized, isFetching}] =
@@ -55,12 +54,20 @@ export const Search = () => {
       <View style={styles.container}>
         <View style={styles.screenContainer}>
           {/* Normally I would use React-Hook-Form and Yup or zod for validations */}
-          <TextInput
-            style={[styles.input, inputStyles]}
-            value={search}
-            onChangeText={onChangeSearch}
-            placeholder="Search"
-          />
+          {/* // Add clear input */}
+          <View>
+            <TextInput
+              style={[styles.input, inputStyles]}
+              value={search}
+              onChangeText={onChangeSearch}
+              placeholder="Search"
+            />
+            <Pressable
+              style={[styles.clearButton, {opacity: search === '' ? 0 : 1}]}
+              onPress={() => onChangeSearch('')}>
+              <Icon name="close" size="large" />
+            </Pressable>
+          </View>
           {error ? <ShowError title="Something went wrong!" /> : null}
         </View>
         {isLoading || isFetching ? (
@@ -121,12 +128,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 5,
+    marginBottom: 5,
   },
   divider: {marginVertical: 12},
   input: {
     height: 40,
-    paddingHorizontal: 10,
+    paddingLeft: 10,
+    paddingRight: 40,
     borderRadius: 8,
   },
   list: {marginTop: 10},
+  clearButton: {position: 'absolute', right: 10, top: 8},
 });
