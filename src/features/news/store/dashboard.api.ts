@@ -1,3 +1,4 @@
+import {API_KEY} from '../../../app/constants';
 import {TTagType} from '../../../common/types';
 import {gNewsApi} from '../../../services/api/rtkq';
 import {IArticle} from '../types';
@@ -8,7 +9,7 @@ export const newsApi = gNewsApi.injectEndpoints({
   endpoints: builder => ({
     getNews: builder.query<Array<IArticle>, any>({
       query: () => ({
-        url: '/top-headlines?category=general&max=10&lang=en&apikey=765907025894e5f23598dd4d10f5463f',
+        url: `/top-headlines?category=general&max=10&lang=en&apikey=${API_KEY}`,
       }),
       transformResponse: (response: {articles: Array<IArticle>}) => {
         return response.articles;
@@ -19,7 +20,7 @@ export const newsApi = gNewsApi.injectEndpoints({
       query: search => {
         console.log('SEARCH ', search);
         return {
-          url: `/search?q=${search}&max=10&lang=en&apikey=765907025894e5f23598dd4d10f5463f`,
+          url: `/search?q=${search}&max=10&lang=en&apikey=${API_KEY}`,
         };
       },
       transformResponse: (response: {articles: Array<IArticle>}) => {

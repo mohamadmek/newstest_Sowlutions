@@ -1,5 +1,5 @@
 import {FlatList, RefreshControl, StyleSheet, View} from 'react-native';
-import React from 'react';
+import React, {useCallback} from 'react';
 import {Card} from '../components/Card';
 import {
   Divider,
@@ -10,6 +10,7 @@ import {
 } from '../../../common/components';
 import {newsApi, useGetNewsQuery} from '../store/dashboard.api';
 import {useAppDispatch} from '../../../app/storeUtilities';
+import {IArticle} from '../types';
 
 export const Main = () => {
   const dispatch = useAppDispatch();
@@ -18,6 +19,17 @@ export const Main = () => {
   const onRefresh = React.useCallback(() => {
     dispatch(newsApi.util.invalidateTags(['News']));
   }, [dispatch]);
+
+  const renderItem = useCallback((item: IArticle) => {
+    return (
+      <>
+        <View style={styles.screenContainer}>
+          <Card article={item} />
+        </View>
+        <Divider style={styles.divider} />
+      </>
+    );
+  }, []);
 
   if (isLoading) {
     return <Loading fullScreen />;
@@ -46,14 +58,7 @@ export const Main = () => {
         }
         data={data}
         keyExtractor={(_, index) => index.toString()}
-        renderItem={({item}) => (
-          <>
-            <View style={styles.screenContainer}>
-              <Card article={item} />
-            </View>
-            <Divider style={styles.divider} />
-          </>
-        )}
+        renderItem={({item}) => renderItem(item)}
       />
     </View>
   );

@@ -18,21 +18,27 @@ export const Card = ({article}: ICardProps) => {
   return (
     <FlexBetween style={styles.card}>
       <FlexColumn style={styles.introduction}>
-        <Text numberOfLines={3} type="SUBTITLE1" bold style={styles.title}>
+        <Text
+          testID="card-title"
+          numberOfLines={3}
+          type="SUBTITLE1"
+          bold
+          style={styles.title}>
           {article.title}
         </Text>
         <FlexStart>
           <Image
+            testID="card-image"
             source={{
               uri: article.image,
             }}
             style={styles.authorImage}
           />
           <FlexColumn style={styles.authorInfoContainer}>
-            <Text type="BODY4" numberOfLines={1} bold>
+            <Text testID="card-source-name" type="BODY4" numberOfLines={1} bold>
               {article.source.name}
             </Text>
-            <Text style={styles.date}>
+            <Text testID="card-date" style={styles.date}>
               {dayjs(article.publishedAt).format('MMM. DD, YYYY')}
             </Text>
           </FlexColumn>
@@ -40,6 +46,7 @@ export const Card = ({article}: ICardProps) => {
       </FlexColumn>
       <View style={styles.imageContainer}>
         <FastImage
+          testID="card-source-image"
           source={{
             uri: article.image,
           }}

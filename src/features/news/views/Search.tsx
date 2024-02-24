@@ -7,7 +7,7 @@ import {
   Keyboard,
   ViewStyle,
 } from 'react-native';
-import React from 'react';
+import React, {useCallback} from 'react';
 import {Pressable} from 'react-native';
 import {Card} from '../components/Card';
 import {
@@ -19,13 +19,12 @@ import {
   Text,
 } from '../../../common/components';
 import {useLazySearchNewsQuery} from '../store/dashboard.api';
+import {IArticle} from '../types';
 
 // Add clear input
 // Add Categories filtration
 // Maybe Carousel
-// make apiKey as constant
 // Add some tests
-// Make renderItem as component
 
 export const Search = () => {
   const [searchNews, {data, isLoading, error, isUninitialized, isFetching}] =
@@ -38,6 +37,17 @@ export const Search = () => {
   };
 
   const buttonStyles: ViewStyle = {opacity: search === '' ? 0.5 : 1};
+
+  const renderItem = useCallback((item: IArticle) => {
+    return (
+      <>
+        <View style={styles.screenContainer}>
+          <Card article={item} />
+        </View>
+        <Divider style={styles.divider} />
+      </>
+    );
+  }, []);
 
   return (
     <DismissKeyboardView
@@ -69,14 +79,7 @@ export const Search = () => {
                 }
               />
             }
-            renderItem={({item}) => (
-              <>
-                <View style={styles.screenContainer}>
-                  <Card article={item} />
-                </View>
-                <Divider style={styles.divider} />
-              </>
-            )}
+            renderItem={({item}) => renderItem(item)}
             data={data}
           />
         )}

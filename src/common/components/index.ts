@@ -6,3 +6,5 @@ export * from './NoData/NoData';
 export * from './Loading/Loading';
 export * from './ShowError/ShowError';
 export * from './DismissKeyboardView/DismissKeyboardView';
+
+export * from './Text/Text.test-utils';
