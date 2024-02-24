@@ -1,4 +1,4 @@
-import {Image, StyleSheet, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import React from 'react';
 import {
   FlexBetween,
@@ -27,7 +27,7 @@ export const Card = ({article}: ICardProps) => {
           {article.title}
         </Text>
         <FlexStart>
-          <Image
+          <FastImage
             testID="card-image"
             source={{
               uri: article.image,

@@ -14,7 +14,7 @@ const baseProps: ComponentProps<typeof Card> = {
       name: 'Source',
       url: 'https://www.google.com',
     },
-    publishedAt: new Date().toISOString(),
+    publishedAt: '2024-02-24T00:00:00Z',
   },
 };
 

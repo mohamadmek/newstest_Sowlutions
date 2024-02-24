@@ -36,6 +36,7 @@ export const Search = () => {
   };
 
   const buttonStyles: ViewStyle = {opacity: search === '' ? 0.5 : 1};
+  const clearButtonStyles: ViewStyle = {opacity: search === '' ? 0 : 1};
 
   const renderItem = useCallback((item: IArticle) => {
     return (
@@ -63,7 +64,7 @@ export const Search = () => {
               placeholder="Search"
             />
             <Pressable
-              style={[styles.clearButton, {opacity: search === '' ? 0 : 1}]}
+              style={[styles.clearButton, clearButtonStyles]}
               onPress={() => onChangeSearch('')}>
               <Icon name="close" size="large" />
             </Pressable>

@@ -7,9 +7,9 @@ export const tagType: TTagType = 'News';
 
 export const newsApi = gNewsApi.injectEndpoints({
   endpoints: builder => ({
-    getNews: builder.query<Array<IArticle>, any>({
-      query: () => ({
-        url: `/top-headlines?category=general&max=10&lang=en&apikey=${API_KEY}`,
+    getNews: builder.query<Array<IArticle>, string>({
+      query: category => ({
+        url: `/top-headlines?category=${category}&max=10&lang=en&apikey=${API_KEY}`,
       }),
       transformResponse: (response: {articles: Array<IArticle>}) => {
         return response.articles;
