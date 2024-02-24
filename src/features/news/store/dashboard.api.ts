@@ -17,12 +17,9 @@ export const newsApi = gNewsApi.injectEndpoints({
       providesTags: () => [{type: tagType, id: 'LIST'}],
     }),
     searchNews: builder.query<Array<IArticle>, string>({
-      query: search => {
-        console.log('SEARCH ', search);
-        return {
-          url: `/search?q=${search}&max=10&lang=en&apikey=${API_KEY}`,
-        };
-      },
+      query: search => ({
+        url: `/search?q=${search}&max=10&lang=en&apikey=${API_KEY}`,
+      }),
       transformResponse: (response: {articles: Array<IArticle>}) => {
         return response.articles;
       },

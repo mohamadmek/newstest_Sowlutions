@@ -1,3 +1,35 @@
+## Screenshots
+
+<p align="center" >
+  <kbd>
+    <img
+    width="200"
+    height="400"
+      src="src/app/home.png?raw=true"
+      title="Main Page"
+      float="left"
+    >
+  </kbd>
+  <kbd>
+    <img
+       width="200"
+    height="400"
+      src="src/app/emptySearch.png?raw=true"
+      title="Empty Search"
+      float="left"
+    >
+  </kbd>
+   <kbd>
+    <img
+       width="200"
+    height="400"
+      src="src/app/filledSearch.png?raw=true"
+      title="FilledSearch"
+      float="left"
+    >
+  </kbd>
+</p>
+
 ## Setup
 
 ## Environment Setup
