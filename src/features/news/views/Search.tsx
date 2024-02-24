@@ -22,9 +22,6 @@ import {
 import {useLazySearchNewsQuery} from '../store/dashboard.api';
 import {IArticle} from '../types';
 
-// Add Categories filtration
-// Maybe Carousel
-
 export const Search = () => {
   const [searchNews, {data, isLoading, error, isUninitialized, isFetching}] =
     useLazySearchNewsQuery();

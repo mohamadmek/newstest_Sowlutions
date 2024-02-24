@@ -12,6 +12,12 @@
 
 5. Install dependencies
 
+## Running the app
+
+For IOS: `yarn ios`
+
+For ANDROID: `yarn android`
+
 ## Packages Used
 
 1. Redux Toolkit/RTKQ (For advanced data fetching, state management and caching tool)
@@ -21,6 +27,12 @@
 3. Axios (For API's calls)
 
 4. @react-navigation/native (For navigation)
+
+5. React Native Fast Image (For image caching)
+
+6. React Native Testing Library (For testing)
+
+7. Dayjs (To format dates)
 
 ## Unit testing
 
