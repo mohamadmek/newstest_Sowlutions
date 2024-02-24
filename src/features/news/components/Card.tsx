@@ -7,31 +7,41 @@ import {
   Text,
 } from '../../../common/components';
 import dayjs from 'dayjs';
+import FastImage from 'react-native-fast-image';
+import {IArticle} from '../types';
 
-export const Card = () => {
+interface ICardProps {
+  article: IArticle;
+}
+
+export const Card = ({article}: ICardProps) => {
   return (
     <FlexBetween style={styles.card}>
       <FlexColumn style={styles.introduction}>
         <Text numberOfLines={3} type="SUBTITLE1" bold style={styles.title}>
-          Fresh workers raises $150M Series H on $3.50 valuation
+          {article.title}
         </Text>
         <FlexStart>
           <Image
             source={{
-              uri: 'https://reactnative.dev/img/tiny_logo.png',
+              uri: article.image,
             }}
             style={styles.authorImage}
           />
           <FlexColumn style={styles.authorInfoContainer}>
-            <Text>Ron Miller</Text>
-            <Text>{dayjs('2024-02-22T17:24:01Z').format('MMM. DD, YYYY')}</Text>
+            <Text type="BODY4" numberOfLines={1} bold>
+              {article.source.name}
+            </Text>
+            <Text style={styles.date}>
+              {dayjs(article.publishedAt).format('MMM. DD, YYYY')}
+            </Text>
           </FlexColumn>
         </FlexStart>
       </FlexColumn>
       <View style={styles.imageContainer}>
-        <Image
+        <FastImage
           source={{
-            uri: 'https://reactnative.dev/img/tiny_logo.png',
+            uri: article.image,
           }}
           style={styles.image}
         />
@@ -47,9 +57,10 @@ const styles = StyleSheet.create({
   introduction: {
     flex: 1,
   },
-  title: {lineHeight: 23},
+  title: {lineHeight: 23, color: '#494949'},
   imageContainer: {flex: 0.8},
   image: {width: '100%', height: 110, borderRadius: 8},
   authorImage: {width: 40, height: 40, borderRadius: 8},
   authorInfoContainer: {gap: 4},
+  date: {color: '#929292'},
 });

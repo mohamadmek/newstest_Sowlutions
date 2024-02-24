@@ -30,7 +30,7 @@ const simpleBaseQuery: BaseQueryFn<
     return {data: response.data};
   } catch (axiosError) {
     // return our error in the format that RTKQ expects (wrapped in error so it can infer type)
-    return {error: 'ERROR'};
+    return {error: axiosError};
   }
 };
 

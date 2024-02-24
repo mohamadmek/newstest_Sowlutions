@@ -2,6 +2,8 @@ import type {StackScreenProps} from '@react-navigation/stack';
 
 export type TMainStackParamList = {
   MainNews: undefined;
+  SearchNews: undefined;
+  mohamad: undefined;
 };
 
 export type TRootStackParamList = TMainStackParamList;

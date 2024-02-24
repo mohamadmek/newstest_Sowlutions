@@ -6,10 +6,6 @@ interface ITextProps extends TextProps {
   text?: string | null;
   align?: TextStyle['textAlign'];
   bold?: boolean;
-  // TODO: Refactor to be type
-  primary?: boolean;
-  secondary?: boolean;
-  tertiary?: boolean;
   white?: boolean;
   type?: keyof typeof sizes;
 }
@@ -23,6 +19,7 @@ const sizes = {
   BODY1: 14,
   BODY2: 12,
   BODY3: 10,
+  BODY4: 13,
 };
 
 export const Text = ({
@@ -31,16 +28,17 @@ export const Text = ({
   align = 'left',
   children,
   bold,
-  primary,
-  secondary,
   white,
-  tertiary,
   type = 'BODY1',
   ...rest
 }: ITextProps) => {
   const addedStyles: TextStyle = {};
   if (bold) {
     addedStyles.fontWeight = 'bold';
+  }
+
+  if (white) {
+    addedStyles.color = 'white';
   }
 
   addedStyles.fontSize = sizes[type];
